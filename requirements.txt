@@ -1,0 +1,5 @@
+# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip3 freeze > requirements.txt' in the terminal to overwrite this file
+# To build local (outside of container) virtual environment/host machine from this, run 'pip3 install -r requirements.txt' in the terminal
+influxdb==5.3.0
+envyaml==0.2060
+requests==2.24.0

@@ -1,0 +1,14 @@
+hue_bridge:
+    url: 192.168.1.3
+    user_key: ${HUEBRIDGE_KEY}
+influx_db:
+    host: homestats_database
+    port: 8086
+    database: homestats
+    username: ${INFLUXDB_USER}
+    password: ${INFLUXDB_USER_PASSWORD}
+intervals: 
+    # in seconds
+    temperature: 300 # every 5mins
+    light: 600 # every 10mins
+    movement: 15 

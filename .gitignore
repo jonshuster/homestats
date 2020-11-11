@@ -1,0 +1,6 @@
+/.DS_Store
+/.env
+/.venv
+/.vscode
+/docker-compose.debug.yml
+/docs
