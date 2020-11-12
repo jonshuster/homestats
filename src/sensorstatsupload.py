@@ -3,7 +3,7 @@
 
 Todo:
     * Service Discovery of Bridge
-    * Find Sensor First, then just use that end point
+    * Find Sensor First, then just use that endpoint
     * Use Different Polling per Type (Presence>Temperature)
 """
 import argparse
@@ -28,7 +28,7 @@ def load_config(config_file):
         config_file (String): Path to configuration file
     """
     cfg = EnvYAML(config_file)
-    logging.debug("Configuration: %s", cfg)
+    logging.debug("Configuration: %s", cfg.export())
     return cfg
 
 
