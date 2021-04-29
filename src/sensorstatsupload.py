@@ -47,7 +47,7 @@ def log_sensor_data(sensors):
     logging.info( summary )
 
 
-def get_hue_sensor_data(sensor_id, bridge_ip, user_key, retry_count=5):
+def get_hue_sensor_data(sensor_id, bridge_ip, user_key, retry_count=15):
     """
     Queries a Hue Bridge for its sensor payload returning JSON.
     Will retry a number of times if required.
