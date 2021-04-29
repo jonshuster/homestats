@@ -43,7 +43,7 @@ def log_sensor_data(sensors):
     """
     summary = "Sensor Data..."
     for sensor in sensors:
-        summary += f"{sensor['measurement']}:{sensor['fields']['value']}({sensor['time'][-8:]}) "
+        summary += f"{sensor['measurement']}:{sensor['fields']['value']}({sensor['time'][-8:]} UTC) "
     logging.info( summary )
 
 
@@ -96,7 +96,7 @@ def parse_sensor_json(sensors_json):
                 sensor['tags'] = { 'id':sensor_json['uniqueid'],
                                     'name':sensor_json['name'] }
                                     #TODO: Think if need utf8 decoding for above
-                sensor['time'] = sensor_json['state']['lastupdated']
+                sensor['time'] = sensor_json['state']['lastupdated'] # supplied in UTC
                 sensor['fields'] = {}
                 if sensor_json['type'] == constants.HUE_ZIGBEE_TEMPERATURE :
                     sensor['measurement'] = constants.TEMPERATURE_MEASURE
@@ -117,7 +117,7 @@ def parse_sensor_json(sensors_json):
 _FIRST_DB_CONNECTION = [True] #Mutable List to avoid Global
 def persist_measurement(data, influx_db_cfg, retry_counter=5):
     """
-    Persist supplied data into configured Influx DB.  Will retry a number of 
+    Persist supplied data into configured Influx DB.  Will retry a number of
     times if there are ConnectionErrors.
 
     Args:
@@ -155,8 +155,8 @@ def main(iterations, sleep, config_file):
         iterations (Integer): Number of times to interate, ie. loop. Default is infinite.
         sleep (Interger): How long to sleep for between iterations. Default uses config.
     """
-    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p',
-                        level=os.environ.get("LOGLEVEL", logging.info))
+    logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d/%m/%Y %I:%M:%S %p %Z',
+                        level=os.environ.get("LOGLEVEL", logging.INFO))
 
     cfg = load_config(config_file)
     hue_bridge = cfg['hue_bridge.url']
@@ -192,6 +192,6 @@ if __name__ == '__main__' :
     parser = argparse.ArgumentParser(description='Queries and prints home metrics output from Hue Bridge')
     parser.add_argument('-i','--iterations', type=int, default=-1, help='Number of times to interate, ie. loop. Default is infinite.' )
     parser.add_argument('-s','--sleep', type=int, default=-1, help='How long to sleep for between iterations. Default uses config.' )
-    parser.add_argument('-c','--config', type=str, default='homestatsconfig.yaml', help='Configuration file' )
+    parser.add_argument('-c','--config', type=str, default='cfg/homestatsconfig.yaml', help='Configuration file' )
     args = parser.parse_args()
     main(args.iterations, args.sleep, args.config)
