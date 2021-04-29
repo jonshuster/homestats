@@ -38,5 +38,5 @@ Below is a preview of the dashboard that Grafana will come preconfigured with in
 ## Ideas and TODO
 As always there are plenty of ideas for next steps, missing or non optimal features.
 - [ ] Hue Bridge Discovery - Use discovery services rather than fixed IP
-- [ ] Support multiple sensors - Currently hits on bridge parses data from all sensors in one go. Perhaps should support multiple with different refresh intervals for each sensor (eg. movement more often than temperature)
+- [ ] Support multiple sensors - Currently hits one bridge parsing data from all sensors in one go. Perhaps should support multiple with different refresh intervals for each sensor (eg. movement more often than temperature)
 - [ ] Presence DataType - Consider storing presence/movement as a numeric rather than boolean for improved formatting in Grafana (Grafana can't value map booleans and influx won't let you cast boolean to integer in a SELECT)
