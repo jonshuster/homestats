@@ -20,6 +20,8 @@ docker-compose up
 ## Project Structure
 - `src/`
     - Python source code for any scripts. Scripts are those polling Hue and storing values in the DB
+- `cfg/`
+    - Configuration files for scripts. Including the DB Ports and Hue Bridge info. 
 - `grafana-provisioning/`
     - Grafana will import these `datasources` and `dashboard` definitions on startup 
 - `.env`
