@@ -354,7 +354,7 @@
                 "type": "fill"
               }
             ],
-            "measurement": "Temperature",
+            "measurement": "LightLevel",
             "orderByTime": "ASC",
             "policy": "default",
             "query": "SELECT last(\"value\") FROM \"LightLevel\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
@@ -380,7 +380,7 @@
         ],
         "timeFrom": null,
         "timeShift": null,
-        "title": "Current Temperature",
+        "title": "Current Light Level",
         "type": "gauge"
       },
       {
@@ -465,7 +465,7 @@
                 "type": "fill"
               }
             ],
-            "measurement": "Temperature",
+            "measurement": "LightLevel",
             "orderByTime": "ASC",
             "policy": "default",
             "query": "SELECT value FROM \"LightLevel\"  GROUP BY \"name\"",
